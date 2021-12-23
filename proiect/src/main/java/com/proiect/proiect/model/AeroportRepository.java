@@ -1,4 +1,4 @@
-package com.proiect.proiect;
+package com.proiect.proiect.model;
 
 import com.proiect.proiect.model.Aeroport;
 import org.springframework.data.repository.CrudRepository;

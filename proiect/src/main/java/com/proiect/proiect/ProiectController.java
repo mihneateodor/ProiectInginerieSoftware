@@ -2,6 +2,7 @@ package com.proiect.proiect;
 
 
 import com.proiect.proiect.model.Aeroport;
+import com.proiect.proiect.model.AeroportRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
