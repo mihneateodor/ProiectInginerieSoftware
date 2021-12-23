@@ -10,7 +10,7 @@ create table Persoana (
 idPersoana int,
 numePersoana varchar(100),
 emailPersoana varchar(100),
-parolaPersoana varchar(50),
+parolaPersoana varchar(65),
 constraint persoana_idPersoana_pk primary key (idPersoana)
 );
 
