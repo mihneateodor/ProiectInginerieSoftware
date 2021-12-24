@@ -30,6 +30,17 @@ public class Persoana {
     public String getParolaPersoana(){
         return this.parolaPersoana;
     }
+
+    public void setNumePersoana(String numePersoana) {
+        this.numePersoana = numePersoana;
+    }
+    public void setEmailPersoana(String emailPersoana) {
+        this.emailPersoana = emailPersoana;
+    }
+    public void setParolaPersoana(String parolaPersoana) {
+        this.parolaPersoana = parolaPersoana;
+    }
+
     public String toString(){
         String persoana;
         persoana = "ID " + this.idPersoana + ": " + this.numePersoana + " - " + this.emailPersoana + " - " + this.parolaPersoana;

@@ -44,7 +44,7 @@ public class Aeroport {
     }
     public String toString(){
         String aeroport;
-        aeroport = "ID " + this.idAeroport + ": " + this.numeAeroport + " din " + this.orasAeroport + ", " + this.taraAeroport;
+        aeroport = "ID " + this.idAeroport + ": "  + this.numeAeroport + " din " + this.orasAeroport + ", " + this.taraAeroport;
         return aeroport;
     }
 }
