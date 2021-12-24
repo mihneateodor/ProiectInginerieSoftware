@@ -1,0 +1,24 @@
+.container-text-center{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.form-group-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+.m-3{
+    justify-content: space-between;
+    display: grid;
+}
+

@@ -1,6 +1,8 @@
 package com.proiect.proiect;
 
-import com.proiect.proiect.model.*;
+
+import com.proiect.proiect.model.Aeroport;
+import com.proiect.proiect.model.AeroportRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,24 +15,9 @@ public class ProiectController {
     @Autowired
     private AeroportRepository aeroportRepository;
 
-    @Autowired
-    private PersoanaRepository persoanaRepository;
-
-    @Autowired
-    private ZborRepository zborRepository;
-
-    @GetMapping(path="/airports")
+    @GetMapping(path="/all")
     public @ResponseBody Iterable<Aeroport> getAllAirports() {
+        // This returns a JSON or XML with the users
         return aeroportRepository.findAll();
-    }
-
-    @GetMapping(path="/persons")
-    public @ResponseBody Iterable<Persoana> getAllPersons() {
-        return persoanaRepository.findAll();
-    }
-
-    @GetMapping(path="/flights")
-    public @ResponseBody Iterable<Zbor> getAllFlights() {
-        return zborRepository.findAll();
     }
 }
