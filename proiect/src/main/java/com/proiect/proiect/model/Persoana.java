@@ -13,7 +13,7 @@ public class Persoana {
     private String numePersoana;
     @Column(nullable = false, unique = true)
     private String emailPersoana;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String parolaPersoana;
 
     public Persoana(){}

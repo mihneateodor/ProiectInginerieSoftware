@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 
 @Controller
 public class ProiectController {
@@ -29,17 +31,17 @@ public class ProiectController {
     }
 
     @GetMapping("")
-    public String viewHomePage(Model model){
-        model.addAttribute("persoana",new Persoana());
+    public String viewHomePage(){
         return "index";
     }
 
     @GetMapping("/register")
-    public String showSingUpForm(){
+    public String showSingUpForm(Model model){
+        model.addAttribute("persoana",new Persoana());
         return "signup_form";
     }
 
-    @PostMapping("process_register")
+    @PostMapping("/process_register")
     public String processRegistration(Persoana persoana){
         persoanaRepository.save(persoana);
         return "registration_success";
