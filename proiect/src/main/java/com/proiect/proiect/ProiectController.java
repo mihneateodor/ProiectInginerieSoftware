@@ -35,7 +35,7 @@ public class ProiectController {
     }
 
     @GetMapping("/register")
-    public String showSingUpForm(){
+    public String showSignUpForm(){
         return "signup_form";
     }
 

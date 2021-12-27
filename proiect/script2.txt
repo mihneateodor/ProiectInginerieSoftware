@@ -9,9 +9,9 @@ insert into Aeroport values (8, 'Aeroportul International Orlando', 'Orlando', '
 insert into Aeroport values (9, 'Aeroportul International San Francisco', 'San Francisco', 'Statele Unite ale Americii - California');
 insert into Aeroport values (10, 'Aeroportul internațional Dubai', 'Dubai', 'Emiratele Arabe Unite');
 
-insert into Persoana values (1, 'Mihnea Teodor Circiu', 'circiumihnea@gmail.com', 'parola1');
-insert into Persoana values (2, 'Raul Gorgan', 'raulgorgan@gmail.com', 'parola2');
-insert into Persoana values (3, 'Mihai Cociubei', 'mihaicociubei@gmail.com', 'parola3');
+insert into Persoana values (1, 'circiumihnea@gmail.com' ,'Mihnea Teodor Circiu', 'parola1');
+insert into Persoana values (2, 'raulgorgan@gmail.com', 'Raul Gorgan', 'parola2');
+insert into Persoana values (3, 'mihaicociubei@gmail.com','Mihai Cociubei' , 'parola3');
 
 insert into Zbor (id_zbor, id_aeroport_plecare, id_aeroport_sosire, ora_plecare, durata_ore, durata_min, pret, companie)
 values (1, 1, 2, '15:35', 3,25, 25, 'Blue Air');
