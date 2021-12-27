@@ -15,6 +15,8 @@ public class Persoana {
     private String emailPersoana;
     @Column(nullable = false)
     private String parolaPersoana;
+    @Column(nullable = false)
+    private boolean admin;
 
     public Persoana(){}
 
@@ -30,7 +32,13 @@ public class Persoana {
     public String getParolaPersoana(){
         return this.parolaPersoana;
     }
+    public boolean getAdmin(){
+        return this.admin;
+    }
 
+    public void setAdmin(boolean admin){
+        this.admin=admin;
+    }
     public void setIdPersoana(int idPersoana) {
         this.idPersoana = idPersoana;
     }
