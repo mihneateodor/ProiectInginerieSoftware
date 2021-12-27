@@ -1,6 +1,7 @@
 package com.proiect.proiect.model;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersoanaRepository extends JpaRepository<Persoana, Integer> {
+import org.springframework.data.repository.CrudRepository;
+
+public interface PersoanaRepository extends CrudRepository<Persoana, Integer> {
 }
