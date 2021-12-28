@@ -1,7 +1,5 @@
 package com.proiect.proiect;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.proiect.proiect.model.Persoana;
 import com.proiect.proiect.model.PersoanaRepository;
 import org.junit.jupiter.api.Test;
@@ -11,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -35,6 +35,17 @@ public class UserRepositoryTest {
         Persoana existUser = entityManager.find(Persoana.class, savedUser.getIdPersoana());
 
         assertThat(user.getEmailPersoana()).isEqualTo(existUser.getEmailPersoana());
+
+    }
+
+    @Test
+    public void testFindUserByEmail(){
+
+        String email= "Mihai@gmail.com";
+
+        Persoana persoana=  repo.findByEmailPersoana(email);
+
+        assertThat(persoana).isNotNull();
 
     }
 
