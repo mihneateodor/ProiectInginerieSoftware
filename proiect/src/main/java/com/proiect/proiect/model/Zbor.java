@@ -5,7 +5,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name="zbor")
-public class Zbor {
+public class Zbor extends ZborItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idZbor;
@@ -76,7 +76,7 @@ public class Zbor {
     public String toString(){
         String zbor;
         zbor = "ID " + this.idZbor + ": de la aeroportul " + this.idAeroportPlecare + " catre aeroportul " + this.idAeroportSosire + " la ora " + this.oraPlecare + ", durata de " +
-                this.durataOre + " ore si " + this.durataMin + " minute, cu compania " + this.companie + " la pretul de " + this.pret + "EURO.";
+                this.durataOre + " ore si " + this.durataMin + " minute, cu compania " + this.companie + " la pretul de " + this.pret + " EURO.";
         return zbor;
     }
 }
