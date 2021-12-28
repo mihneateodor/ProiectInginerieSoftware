@@ -1,11 +1,20 @@
 package com.proiect.proiect.model;
 
+import com.proiect.proiect.repositories.AeroportRepository;
+import com.proiect.proiect.repositories.CautareZbor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+
+import javax.annotation.Resource;
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Optional;
+
 
 @Entity
 @Table(name="zbor")
-public class Zbor extends ZborItem{
+public class Zbor extends ZborItem implements Comparable<Zbor>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idZbor;
@@ -25,6 +34,17 @@ public class Zbor extends ZborItem{
     private String companie;
 
     public Zbor(){}
+
+    public Zbor(int idZbor, int idAeroportPlecare, int idAeroportSosire, Time oraPlecare, int durataMin, int durataOre, int pret, String companie){
+        this.idZbor=idZbor;
+        this.idAeroportPlecare=idAeroportPlecare;
+        this.idAeroportSosire=idAeroportSosire;
+        this.oraPlecare=oraPlecare;
+        this.durataMin=durataMin;
+        this.durataOre=durataOre;
+        this.pret=pret;
+        this.companie=companie;
+    }
 
     public int getIdZbor(){
         return this.idZbor;
@@ -74,9 +94,23 @@ public class Zbor extends ZborItem{
     }
 
     public String toString(){
+        Aeroport aeroport1 = CautareZbor.findAeroportById(this.idAeroportPlecare);
+        Aeroport aeroport2 = CautareZbor.findAeroportById(this.idAeroportSosire);
         String zbor;
-        zbor = "ID " + this.idZbor + ": de la aeroportul " + this.idAeroportPlecare + " catre aeroportul " + this.idAeroportSosire + " la ora " + this.oraPlecare + ", durata de " +
+        zbor = "De la aeroportul " + aeroport1.toString() + " catre aeroportul " + aeroport2.toString() + " la ora " + this.oraPlecare + ", durata de " +
                 this.durataOre + " ore si " + this.durataMin + " minute, cu compania " + this.companie + " la pretul de " + this.pret + " EURO.";
         return zbor;
+    }
+
+    @Override
+    public int compareTo(Zbor o) {
+        Integer idZbor1= this.idZbor;
+        Integer idZbor2= o.idZbor;
+        return idZbor1.compareTo(idZbor2);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }

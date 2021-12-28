@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="aeroport")
-public class Aeroport {
+public class Aeroport implements Comparable<Aeroport>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,12 @@ public class Aeroport {
     @Column(nullable = false ,  length = 100)
     private String taraAeroport;
 
+    public Aeroport(int idAeroport, String numeAeroport, String orasAeroport, String taraAeroport){
+        this.idAeroport=idAeroport;
+        this.numeAeroport=numeAeroport;
+        this.orasAeroport=orasAeroport;
+        this.taraAeroport=taraAeroport;
+    }
     public Aeroport(){}
 
     public int getIdAeroport(){
@@ -44,7 +50,14 @@ public class Aeroport {
     }
     public String toString(){
         String aeroport;
-        aeroport = "ID " + this.idAeroport + ": "  + this.numeAeroport + " din " + this.orasAeroport + ", " + this.taraAeroport;
+        aeroport =  "\"" + this.numeAeroport + "\""  + " din " + this.orasAeroport + ", " + this.taraAeroport;
         return aeroport;
+    }
+
+    @Override
+    public int compareTo(Aeroport o) {
+        Integer idAeroport1= this.idAeroport;
+        Integer idAeroport2 = o.idAeroport;
+        return idAeroport1.compareTo(idAeroport2);
     }
 }

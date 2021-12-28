@@ -3,6 +3,7 @@ package com.proiect.proiect;
 
 import com.proiect.proiect.model.*;
 import com.proiect.proiect.repositories.AeroportRepository;
+import com.proiect.proiect.repositories.CautareZbor;
 import com.proiect.proiect.repositories.ZborRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.proiect.proiect.model.PersoanaRepository;
-
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -71,14 +70,10 @@ public class ProiectController {
         return "login";
     }
 
-    @GetMapping("/composite_test")
-    public @ResponseBody String test(){
-        ZborComposite comp = new ZborComposite();
-        for (int i=3;i<8;i++){
-            Optional<Zbor> zbor = zborRepository.findById(i);
-            comp.add(zbor.get());
-        }
-        System.out.println(comp.toString());
-        return comp.toString();
+    @GetMapping("/test_search")
+    public @ResponseBody String test() {
+
+        CautareZbor cautareZbor1 = new CautareZbor(zborRepository,aeroportRepository,persoanaRepository);
+        return cautareZbor1.findZborAStar("Romania","Germania");
     }
 }

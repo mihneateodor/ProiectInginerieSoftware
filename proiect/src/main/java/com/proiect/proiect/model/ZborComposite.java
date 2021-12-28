@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZborComposite extends ZborItem{
+public class ZborComposite extends ZborItem implements Comparable<ZborComposite>, Cloneable{
 
     private List<ZborItem> lista;
 
@@ -15,8 +15,10 @@ public class ZborComposite extends ZborItem{
     private Time oraPlecare;
 
     public ZborComposite (){
-        lista=new ArrayList<>();
+        this.lista=new ArrayList<>();
     }
+
+
 
     public void add(ZborItem item){
         lista.add(item);
@@ -33,10 +35,20 @@ public class ZborComposite extends ZborItem{
         this.getPret();
     }
 
+    public int getIdAeroportSosire(){
+        ZborItem zborItem = getLastZborItem();
+        return zborItem.getIdAeroportSosire();
+    }
+
     public ZborItem getZborItem (int index){
         return lista.get(index);
     }
-
+    public ZborItem getLastZborItem (){
+        return lista.get(lista.size()-1);
+    }
+    public void removeLastZborItem () {
+        this.lista.remove(lista.get(lista.size()-1));
+    }
 
     public void setDurataMin(){
         int minute = 0;
@@ -83,12 +95,36 @@ public class ZborComposite extends ZborItem{
     }
 
     public String toString(){
-        String mesaj = "Traseul contine "+ (lista.size()-1) +" escale, dureaza "+ this.durataOre +
+        String nrEscale;
+        if(lista.size()-1 == 0)
+            nrEscale="nu contine nicio escala";
+        else if(lista.size()-1 == 1)
+            nrEscale="contine o escala";
+        else
+            nrEscale="contine " + (lista.size()-1) + " escale";
+        String mesaj = "Traseul "+ nrEscale +", dureaza "+ this.durataOre +
                 " ore si " + this.durataMin + " minute. Cu plecare la ora  " + this.oraPlecare + ", la pretul de " + this.pret + " EURO " +
-                "si este format din urmatoarele zboruri:\n" ;
+                "si este format din urmatoarele zboruri.\n" ;
         for(ZborItem item : lista){
             mesaj = mesaj + item.toString() + "\n";
         }
         return mesaj;
+    }
+
+    @Override
+    public int compareTo(ZborComposite o) {
+        Integer len1 = this.lista.size();
+        Integer len2 = o.lista.size();
+        return len1.compareTo(len2);
+    }
+
+    @Override
+    public Object clone() {
+        ZborComposite zborComposite= new ZborComposite();
+        zborComposite.lista = new ArrayList<>(this.lista);
+        zborComposite.durataOre = this.durataOre;
+        zborComposite.durataMin = this.durataMin;
+        zborComposite.pret = this.pret;
+        return zborComposite;
     }
 }

@@ -69,4 +69,10 @@ public class ZborItem  {
     public void setOraPlecare(){
         throw new UnsupportedOperationException();
     }
+    public void removeLastZborItem () {
+        throw new UnsupportedOperationException();
+    }
+    public Object clone() throws CloneNotSupportedException{
+        throw new UnsupportedOperationException();
+    }
 }
