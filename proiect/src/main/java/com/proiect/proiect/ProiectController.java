@@ -1,6 +1,9 @@
 package com.proiect.proiect;
 
 
+import com.proiect.proiect.administrate.InsertCommand;
+import com.proiect.proiect.administrate.Invoker;
+import com.proiect.proiect.administrate.Operation;
 import com.proiect.proiect.model.*;
 import com.proiect.proiect.repositories.AeroportRepository;
 import com.proiect.proiect.repositories.CautareZbor;
@@ -12,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.proiect.proiect.model.PersoanaRepository;
+import com.proiect.proiect.repositories.PersoanaRepository;
 import java.util.List;
 
 
@@ -26,6 +29,12 @@ public class ProiectController {
 
     @Autowired
     private PersoanaRepository persoanaRepository;
+
+    private Invoker invoker = new Invoker();
+    private Operation operation = new Operation();
+    private InsertCommand insertCommand = new InsertCommand(operation);
+    //private UpdateCommand updateCommand;
+    //private DeleteCommand deleteCommand;
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Aeroport> getAllAirports() {
@@ -75,5 +84,63 @@ public class ProiectController {
 
         CautareZbor cautareZbor1 = new CautareZbor(zborRepository,aeroportRepository,persoanaRepository);
         return cautareZbor1.findZborAStar("Romania","Germania");
+    }
+
+    ///////////////////////////////////////principal admin
+    @GetMapping("/main_adm")
+    public String MainAdm(){
+        return "main_adm";
+    }
+
+    ///////////////////////////////////////////aeroport admin
+    @GetMapping("/airport_adm")
+    public String AirportAdm(){
+        return "adm_aeroport";
+    }
+
+    @GetMapping("/insert_airport")
+    public String showInsertForm(Model model) {
+        model.addAttribute("aeroport", new Aeroport());
+        return "insert_form";
+    }
+
+    @PostMapping("/process_insert")
+    public String processInsertAirport(Aeroport aeroport) {
+        invoker.setCommand(insertCommand);
+        invoker.executeCommand(aeroport, aeroportRepository);
+        return "insert_success";
+    }
+
+    @GetMapping("/delete_airport")
+    public String showDeleteForm(Model model) {
+        Integer id = 0;
+        model.addAttribute("Integer", id);
+        return "delete_form";
+    }
+
+    /* @PostMapping("/process_delete")
+     public String processDelete(Integer id) {
+         System.out.println(id);
+         invoker.setCommand(deleteCommand);
+         invoker.executeCommand(id, aeroportRepository);
+         return "insert_success";
+     }*/
+//////////////////////////////////////////zbor admin
+    @GetMapping("/zbor_adm")
+    public String ZborAdm(){
+        return "adm_zbor";
+    }
+
+    @GetMapping("/insert_flight")
+    public String showInsertFlightForm(Model model) {
+        model.addAttribute("zbor", new Zbor());
+        return "insert_zbor_form";
+    }
+
+    @PostMapping("/process_flight_insert")
+    public String processInsertFlight(Zbor zbor) {
+        invoker.setCommand(insertCommand);
+        invoker.executeCommand(zbor, zborRepository);
+        return "insert_success";
     }
 }

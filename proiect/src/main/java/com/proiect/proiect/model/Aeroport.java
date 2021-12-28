@@ -24,6 +24,13 @@ public class Aeroport implements Comparable<Aeroport>{
     }
     public Aeroport(){}
 
+    public Aeroport(String numeAeroport, String orasAeroport, String taraAeroport) {
+        //this.idAeroport = idAeroport;
+        this.numeAeroport = numeAeroport;
+        this.orasAeroport = orasAeroport;
+        this.taraAeroport = taraAeroport;
+    }
+
     public int getIdAeroport(){
         return this.idAeroport;
     }

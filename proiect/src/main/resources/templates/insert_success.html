@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<style>
+    body{
+        background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(171,102,255,1) 0%, rgba(116,182,247,1) 90% );
+    }
+
+    h1 {text-align: center;}
+    p {text-align: center;}
+    div {text-align: center;
+        vertical-align:center;}
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Succeeded</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h3>You successfully added a record to database!</h3>
+        <h4><a th:href="@{/main_adm}">Back</a></h4>
+    </div>
+
+</div>
+</body>
+</html>

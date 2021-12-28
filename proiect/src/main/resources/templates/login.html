@@ -8,20 +8,20 @@
 <div class="center">
     <h1>Login</h1>
     <form name="f" th:action="@{/login}" method="post">
-            <div class="text-field">
-                <input type="text" id="username" name="username" required/>
-                <span></span>
-                <label for="username"> Username</label>
+        <div class="text-field">
+            <input type="text" id="username" name="username" required/>
+            <span></span>
+            <label for="username"> Username</label>
 
-            </div>
+        </div>
         <div class="text-field">
             <input type="password" id="password" name="password" required/>
             <span></span>
             <label for="password"> Password</label>
         </div>
-            <div class="from-actions">
-                <button type="submit" class="btn">Log In</button>
-            </div>
+        <div class="from-actions">
+            <button type="submit" class="btn">Log In</button>
+        </div>
 
         <div class="sign-up">
             Not a member? <a href="/register">Signup</a>
