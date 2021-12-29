@@ -22,4 +22,7 @@ public class Operation {
     public void delete(Integer id, AeroportRepository repository) {
         repository.deleteById(id);
     }
+    public void delete(Integer id, ZborRepository repository) {
+        repository.deleteById(id);
+    }
 }
