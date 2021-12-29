@@ -1,6 +1,7 @@
 package com.proiect.proiect;
 
 
+import com.proiect.proiect.administrate.DeleteCommand;
 import com.proiect.proiect.administrate.InsertCommand;
 import com.proiect.proiect.administrate.Invoker;
 import com.proiect.proiect.administrate.Operation;
@@ -12,11 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.proiect.proiect.repositories.PersoanaRepository;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -34,7 +34,7 @@ public class ProiectController {
     private Operation operation = new Operation();
     private InsertCommand insertCommand = new InsertCommand(operation);
     //private UpdateCommand updateCommand;
-    //private DeleteCommand deleteCommand;
+    private DeleteCommand deleteCommand = new DeleteCommand(operation);
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Aeroport> getAllAirports() {
@@ -119,17 +119,20 @@ public class ProiectController {
     @GetMapping("/delete_airport")
     public String showDeleteForm(Model model) {
         Integer id = 0;
-        model.addAttribute("Integer", id);
+        model.addAttribute("id", id);
         return "delete_form";
     }
 
-    /* @PostMapping("/process_delete")
+     @RequestMapping(value="/process_delete", method=RequestMethod.GET)
+     @PostMapping("/process_delete")
      public String processDelete(Integer id) {
-         System.out.println(id);
+         Aeroport aeroport = null;
          invoker.setCommand(deleteCommand);
-         invoker.executeCommand(id, aeroportRepository);
+         if(aeroportRepository.findById(id).isPresent())
+            aeroport = aeroportRepository.findById(id).get();
+         invoker.executeCommand(aeroport, aeroportRepository);
          return "insert_success";
-     }*/
+     }
 //////////////////////////////////////////zbor admin
     @GetMapping("/zbor_adm")
     public String ZborAdm(){
@@ -149,8 +152,21 @@ public class ProiectController {
         return "insert_success";
     }
 
-    @GetMapping("/search")
-    public String search(){
-        return "search";
+    @GetMapping("/delete_flight")
+    public String showDeleteFlightForm(Model model) {
+        Integer id = 0;
+        model.addAttribute("id", id);
+        return "delete_flight_form";
+    }
+
+    @RequestMapping(value="/process_flight_delete", method=RequestMethod.GET)
+    @PostMapping("/process_flight_delete")
+    public String processFlightDelete(Integer id) {
+        Zbor zbor = null;
+        invoker.setCommand(deleteCommand);
+        if(zborRepository.findById(id).isPresent())
+            zbor = zborRepository.findById(id).get();
+        invoker.executeCommand(zbor, zborRepository);
+        return "insert_success";
     }
 }
