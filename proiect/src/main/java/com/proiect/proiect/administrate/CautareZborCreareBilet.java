@@ -14,9 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CautareZborCreareBilet {
-    private ZborRepository zborRepository;
     private AeroportRepository aeroportRepository;
-    private PersoanaRepository persoanaRepository;
 
     protected static final Logger LOGGER = Logger.getLogger(CautareZborCreareBilet.class.getName());
 
@@ -24,12 +22,9 @@ public class CautareZborCreareBilet {
     private static final String findZborByIdAeroportPlecareString = "SELECT * FROM zbor WHERE id_aeroport_plecare = ?";
     private static final String findAeroportById = "SELECT * FROM aeroport WHERE id_aeroport = ?";
 
-    public CautareZborCreareBilet(ZborRepository zborRepository,
-                                  AeroportRepository aeroportRepository,
-                                  PersoanaRepository persoanaRepository){
+    public CautareZborCreareBilet(AeroportRepository aeroportRepository){
         this.aeroportRepository=aeroportRepository;
-        this.persoanaRepository=persoanaRepository;
-        this.zborRepository=zborRepository;
+
     }
 
     public CautareZborCreareBilet(){}

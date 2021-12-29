@@ -108,7 +108,7 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
             nrEscale="contine " + (lista.size()-1) + " escale";
         String mesaj = "Traseul "+ nrEscale +", dureaza "+ this.durataOre +
                 " ore si " + this.durataMin + " minute. Cu plecare la ora  " + this.oraPlecare + ", la pretul de " + this.pret + " EURO " +
-                "si este format din urmatoarele zboruri.\n" ;
+                "si este format din urmatoarele zboruri.\n " ;
         for(ZborItem item : lista){
             mesaj = mesaj + item.toString() + "\n";
         }

@@ -13,9 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Time;
+import com.proiect.proiect.repositories.PersoanaRepository;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -29,6 +30,8 @@ public class ProiectController {
     @Autowired
     private PersoanaRepository persoanaRepository;
 
+    private CautareZborCreareBilet search;
+
     private Invoker invoker = new Invoker();
     private Operation operation = new Operation();
     private InsertCommand insertCommand = new InsertCommand(operation);
@@ -38,7 +41,6 @@ public class ProiectController {
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Aeroport> getAllAirports() {
-        // This returns a JSON or XML with the users
         return aeroportRepository.findAll();
     }
 
@@ -79,19 +81,6 @@ public class ProiectController {
     public String logInPage() {
         return "login";
     }
-
-    @GetMapping("/test_search")
-    public @ResponseBody
-    String test() {
-
-        CautareZborCreareBilet cautareZborBilet1 = new CautareZborCreareBilet(zborRepository, aeroportRepository, persoanaRepository);
-        try {
-            return cautareZborBilet1.findZborAStar("Romania", "Statele Unite").toString();
-        } catch (Exception e) {
-            return "Could not find this route!";
-        }
-    }
-
     ///////////////////////////////////////principal admin
     @GetMapping("/main_adm")
     public String MainAdm() {
@@ -252,7 +241,26 @@ public class ProiectController {
 
 
     @GetMapping("/search")
-    public String search() {
+    public String search(){
         return "search";
     }
+
+    @RequestMapping(value="/choose", method = RequestMethod.POST)
+    @PostMapping("/choose")
+    public String choose(@RequestParam String from, @RequestParam String to, Model model) {
+        String mesaj;
+        CautareZborCreareBilet search = new CautareZborCreareBilet(aeroportRepository);
+        try {
+            mesaj=search.findZborAStar(from, to).toString();
+
+        } catch (Exception e) {
+            mesaj="Could not find this route!";
+        }
+        model.addAttribute("mesaj",mesaj);
+        if(!(mesaj.equals("Could not find this route!")))
+            return "choose";
+        return "choose";
+    }
+
+
 }

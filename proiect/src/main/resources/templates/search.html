@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
-    <link rel="stylesheet" href="signinStyle.css">
+    <link rel="stylesheet" href="search.css">
 </head>
 <body>
 
@@ -13,18 +14,18 @@
 
 <div class="search">
     <h1> Search for flight</h1>
-    <form name="s" th:action="@{/}" method="get">
-        <div class="text-field1">
-            <input type="text" id="from" name="from" required/>
+    <form name="s" th:action="@{/choose}"  method="post" >
+        <div class="text-field">
+            <input type="text" id="from" name="from"  required/>
             <label for="from"> From</label>
         </div>
-        <div class="text-field1">
+        <div class="text-field">
             <input type="text" id="to" name="to" required/>
             <label for="to"> To</label>
         </div>
 
         <div class="from-actions">
-            <button type="submit" class="btn1">Search</button>
+            <button type="submit" class="btn" name="search">Search</button>
         </div>
     </form>
 </div>

@@ -7,41 +7,44 @@ body{
     overflow: hidden;
 }
 
-.center{
+
+.search{
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 400px;
+    width: 1000px;
     background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(233,233,242,1) 0%, rgba(114,222,249,1) 94%, rgba(0,212,255,1));
     border-radius: 10px;
-    height: 400px;
+    height: 150px;
+    border: 5px solid black;
 }
 
-
-.center h1{
+.search h1{
     text-align: center;
-    padding: 0 0 20px 0;
-    border-bottom: 1px solid silver;
+    padding: 0 0 10px 0;
+    border-bottom: 3px solid black;
 }
 
-.center form{
-    padding: 0 40px;
+.search form{
+    padding: 0 50px;
     box-sizing: border-box;
 }
 
 form .text-field{
+    display : inline-block;
     position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
+    border-bottom: 2px solid black;
+    margin: 0px 25px;
 }
 
+
 .text-field input{
-    width: 100%;
+    width: 350px;
     padding: 0 5px;
     height: 40px;
     font-size: 16px;
-    border: none;
+    border: black;
     background: none;
     outline: none;
 }
@@ -50,7 +53,8 @@ form .text-field{
     position: absolute;
     top: 50%;
     left: 5px;
-    color: #adadad;
+    /*color: #adadad;*/
+    color:black;
     transform: translateY(-50%);
     font-size: 16px;
     pointer-events: none;
@@ -80,8 +84,32 @@ form .text-field{
 
 }
 
+.title{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    width: 550px;
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(176,176,212,1) 0%, rgba(0,212,255,1) 100%);
+    border-radius: 50px;
+    height: 100px;
+    text-align: center;
+    border: 5px solid black;
+
+}
+
+.title h1{
+    text-align: center;
+    padding: 0 0 0px 0;
+    font-size: 45px;
+    margin: 25px;
+}
+
 .btn{
-    width: 100%;
+    position: absolute;
+    top: 55%;
+    left: 88%;
+    width: 100px;
     height: 50px;
     border: 1px solid;
     background: #2691d9;
@@ -99,20 +127,11 @@ form .text-field{
     background: #8e44ad;
 }
 
-.sign-up{
-    margin: 30px 0;
-    text-align: center;
-    font-size: 16px;
-    color: #666666;
+.mapouter{
+    position: absolute;
+    top: 70%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid black;
+
 }
-
-.sign-up a{
-    color: #2691d9;
-    text-decoration: none;
-}
-
-.sign-up a:hover{
-    text-decoration: underline;
-}
-
-
