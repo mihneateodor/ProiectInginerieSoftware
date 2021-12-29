@@ -1,15 +1,9 @@
 package com.proiect.proiect.model;
 
-import com.proiect.proiect.repositories.AeroportRepository;
-import com.proiect.proiect.repositories.CautareZbor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import com.proiect.proiect.administrate.CautareZborCreareBilet;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Optional;
 
 
 @Entity
@@ -94,8 +88,8 @@ public class Zbor extends ZborItem implements Comparable<Zbor>{
     }
 
     public String toString(){
-        Aeroport aeroport1 = CautareZbor.findAeroportById(this.idAeroportPlecare);
-        Aeroport aeroport2 = CautareZbor.findAeroportById(this.idAeroportSosire);
+        Aeroport aeroport1 = CautareZborCreareBilet.findAeroportById(this.idAeroportPlecare);
+        Aeroport aeroport2 = CautareZborCreareBilet.findAeroportById(this.idAeroportSosire);
         String zbor;
         zbor = "De la aeroportul " + aeroport1.toString() + " catre aeroportul " + aeroport2.toString() + " la ora " + this.oraPlecare + ", durata de " +
                 this.durataOre + " ore si " + this.durataMin + " minute, cu compania " + this.companie + " la pretul de " + this.pret + " EURO.";

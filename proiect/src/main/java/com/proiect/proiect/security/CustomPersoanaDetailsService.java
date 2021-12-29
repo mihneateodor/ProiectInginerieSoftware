@@ -1,7 +1,7 @@
 package com.proiect.proiect.security;
 
 import com.proiect.proiect.model.Persoana;
-import com.proiect.proiect.model.PersoanaRepository;
+import com.proiect.proiect.repositories.PersoanaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

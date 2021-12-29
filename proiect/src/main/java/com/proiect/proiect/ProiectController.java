@@ -6,7 +6,7 @@ import com.proiect.proiect.administrate.Invoker;
 import com.proiect.proiect.administrate.Operation;
 import com.proiect.proiect.model.*;
 import com.proiect.proiect.repositories.AeroportRepository;
-import com.proiect.proiect.repositories.CautareZbor;
+import com.proiect.proiect.administrate.CautareZborCreareBilet;
 import com.proiect.proiect.repositories.ZborRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,8 +82,13 @@ public class ProiectController {
     @GetMapping("/test_search")
     public @ResponseBody String test() {
 
-        CautareZbor cautareZbor1 = new CautareZbor(zborRepository,aeroportRepository,persoanaRepository);
-        return cautareZbor1.findZborAStar("Romania","Germania");
+        CautareZborCreareBilet cautareZborBilet1 = new CautareZborCreareBilet(zborRepository,aeroportRepository,persoanaRepository);
+        try {
+            return cautareZborBilet1.findZborAStar("Romania", "Statele Unite").toString();
+        }
+        catch (Exception e){
+            return "Could not find this route!";
+        }
     }
 
     ///////////////////////////////////////principal admin

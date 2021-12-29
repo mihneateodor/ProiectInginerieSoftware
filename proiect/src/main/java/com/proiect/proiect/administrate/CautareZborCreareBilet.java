@@ -1,35 +1,38 @@
-package com.proiect.proiect.repositories;
+package com.proiect.proiect.administrate;
 
 import com.proiect.proiect.connection.ConnectionSql;
 import com.proiect.proiect.model.*;
-import com.proiect.proiect.model.PersoanaRepository;
+import com.proiect.proiect.repositories.AeroportRepository;
+import com.proiect.proiect.repositories.PersoanaRepository;
+import com.proiect.proiect.repositories.ZborRepository;
 import org.javatuples.Triplet;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CautareZbor {
+public class CautareZborCreareBilet {
     private ZborRepository zborRepository;
     private AeroportRepository aeroportRepository;
-    private com.proiect.proiect.model.PersoanaRepository persoanaRepository;
+    private PersoanaRepository persoanaRepository;
 
-    protected static final Logger LOGGER = Logger.getLogger(CautareZbor.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(CautareZborCreareBilet.class.getName());
 
     private static final String findAeroportByTara = "SELECT * FROM aeroport WHERE tara_aeroport LIKE ?";
     private static final String findZborByIdAeroportPlecareString = "SELECT * FROM zbor WHERE id_aeroport_plecare = ?";
     private static final String findAeroportById = "SELECT * FROM aeroport WHERE id_aeroport = ?";
 
-    public CautareZbor(ZborRepository zborRepository,
-                       AeroportRepository aeroportRepository,
-                       PersoanaRepository persoanaRepository){
+    public CautareZborCreareBilet(ZborRepository zborRepository,
+                                  AeroportRepository aeroportRepository,
+                                  PersoanaRepository persoanaRepository){
         this.aeroportRepository=aeroportRepository;
         this.persoanaRepository=persoanaRepository;
         this.zborRepository=zborRepository;
     }
 
-    public CautareZbor(){}
+    public CautareZborCreareBilet(){}
 
     public List<ZborItem> findZborIdAeroportPlecare(int idAeroportPlecare){
         List<ZborItem> toReturn = new ArrayList<>();
@@ -117,14 +120,16 @@ public class CautareZbor {
         return toReturn;
     }
 
-    public String findZborAStar(String tara1, String tara2) {
+    public ZborItem findZborAStar(String tara1, String tara2) throws Exception {
         List<Aeroport> listaAeroportPlecare = this.findAeroportByTara(tara1);
         if(listaAeroportPlecare.isEmpty()) {
-            return "Nu exista zbor cu plecare din aceasta locatie.";
+            //return "Nu exista zbor cu plecare din aceasta locatie.";
+            throw new Exception();
         }
         List<Aeroport> listaAeroportSosire = this.findAeroportByTara(tara2);
         if(listaAeroportSosire.isEmpty()) {
-            return "Nu exista zbor cu sosire in aceasta locatie.";
+            //return "Nu exista zbor cu sosire in aceasta locatie.";
+            throw new Exception();
         }
         for( Aeroport aeroportPlecare : listaAeroportPlecare){
             for( Aeroport aeroportSosire : listaAeroportSosire ){
@@ -142,8 +147,8 @@ public class CautareZbor {
                     if(!(visited.contains(current.getIdAeroport()))){
                         visited.add(current.getIdAeroport());
                         if(current.getIdAeroport()==aeroportSosire.getIdAeroport()){
-                            String mesaj;
-                            return actions.toString();
+                            //String mesaj;
+                            return actions;
                         }
                         List<ZborItem> expanded = this.findZborIdAeroportPlecare(current.getIdAeroport());
                         for(ZborItem nextZbor : expanded){
@@ -158,7 +163,14 @@ public class CautareZbor {
                 }
             }
         }
-        return "";
+        return null;
+    }
+
+    public Bilet createTicket(ZborItem zbor, int nrPasageri, Date dataDus, Date dataIntors, Persoana persoana){
+        if( nrPasageri > 1)
+            zbor.setPret( zbor.getPret() * nrPasageri);
+        Bilet bilet = new Bilet(zbor, nrPasageri, persoana, dataDus, dataIntors);
+        return bilet;
     }
 
 }

@@ -85,6 +85,10 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
         return this.oraPlecare;
     }
 
+    public void setPret(int pret){
+        this.pret=pret;
+    }
+
     public int getPret(){
         int pretCompus=0;
         for(ZborItem  item : lista){

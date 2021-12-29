@@ -1,7 +1,7 @@
 package com.proiect.proiect;
 
 import com.proiect.proiect.model.Persoana;
-import com.proiect.proiect.model.PersoanaRepository;
+import com.proiect.proiect.repositories.PersoanaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
