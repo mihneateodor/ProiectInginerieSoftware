@@ -169,4 +169,9 @@ public class ProiectController {
         invoker.executeCommand(zbor, zborRepository);
         return "insert_success";
     }
+
+    @GetMapping("/search")
+    public String search(){
+        return "search";
+    }
 }
