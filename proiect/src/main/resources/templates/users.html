@@ -10,14 +10,7 @@
 </head>
 <body>
     <div class="container text-center">
-        <div>
-            <form th:action="@{/logout}" method="post">
-                <p>
-                    Welcome
-                </p>
-                <input type="submit" value="Sign Out" />
-            </form>
-        </div>
+
         <div>
             <h1>List of Users</h1>
         </div>
@@ -39,7 +32,11 @@
                 </tbody>
             </table>
         </div>
-
+        <div>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Back" />
+            </form>
+        </div>
     </div>
 </body>
 </html>
