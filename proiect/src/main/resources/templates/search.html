@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="signinStyle.css">
+</head>
+<body>
+
+<div class="title">
+    <h1>Flights Ticket Project</h1>
+</div>
+
+<div class="search">
+    <h1> Search for flight</h1>
+    <form name="s" th:action="@{/}" method="get">
+        <div class="text-field1">
+            <input type="text" id="from" name="from" required/>
+            <label for="from"> From</label>
+        </div>
+        <div class="text-field1">
+            <input type="text" id="to" name="to" required/>
+            <label for="to"> To</label>
+        </div>
+
+        <div class="from-actions">
+            <button type="submit" class="btn1">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="mapouter"><div class="gmap_canvas"><iframe width="809" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:809px;}</style><a href="https://www.embedgooglemap.net">get google map link</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:809px;}</style></div></div>
+
+</body>
+</html>
