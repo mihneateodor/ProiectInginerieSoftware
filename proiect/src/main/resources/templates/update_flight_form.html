@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en">
+
+<style>
+    body {
+        background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(171, 102, 255, 1) 0%, rgba(116, 182, 247, 1) 90%);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    div {
+        text-align: center;
+    }
+    input{
+        align-self: center;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage database</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-text-center">
+    <div class="Title">
+        <h1>Update flight information</h1>
+    </div>
+
+    <form th:action="@{/process_update_flight}"
+          style="max-width: 600px; margin: 0 auto">
+
+        <div class="m-3">
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">Insert the flight id</label>
+                <div class="col-8">
+                    <label>
+                        <input type="number" th:name="id" class="form-control"
+                               required maxlength="10"/>
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">New Departure Time</label>
+                <div class="col-8">
+                    <label>
+                        <input type="text" th:name="ora_plecare" class="form-control"
+                               maxlength="15" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">New Hours</label>
+                <div class="col-8">
+                    <label>
+                        <input type="number" th:name="ore" class="form-control"
+                               maxlength="2"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">New Minutes</label>
+                <div class="col-8">
+                    <label>
+                        <input type="number" th:name="minute" class="form-control"
+                               maxlength="2" max="59"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">New Price</label>
+                <div class="col-8">
+                    <label>
+                        <input type="number" th:name="pret" class="form-control"
+                               maxlength="10"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group-row">
+                <label class="col-form-label col-4">New Company</label>
+                <div class="col-8">
+                    <label>
+                        <input type="text" th:name="companie" class="form-control"
+                               maxlength="20"/>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+
+            <div>
+                <h6>Please complete only the fields that you want to modify.</h6>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container-text-center">
-    <div class="Titlu">
+    <div class="Title">
         <h1>Add a new flight</h1>
     </div>
 
@@ -38,7 +38,7 @@
                 <div class="col-8">
                     <label>
                         <input type="number" th:field="*{idAeroportPlecare}" class="form-control"
-                               required minlength="2" maxlength="20"/>
+                               required maxlength="5"/>
                     </label>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="col-8">
                     <label>
                         <input type="number" th:field="*{idAeroportSosire}" class="form-control"
-                               required minlength="2" maxlength="20"/>
+                               required maxlength="5"/>
                     </label>
                 </div>
             </div>
@@ -58,7 +58,8 @@
                 <div class="col-8">
                     <label>
                         <input type="text" th:field="*{oraPlecare}" class="form-control"
-                               required minlength="1" maxlength="10"/>
+                               required minlength="1" maxlength="10"
+                               pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"/>
                     </label>
                 </div>
             </div>
@@ -68,7 +69,7 @@
                 <div class="col-8">
                     <label>
                         <input type="number" th:field="*{durataOre}" class="form-control"
-                               required minlength="1" maxlength="10"/>
+                               required maxlength="2"/>
                     </label>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                 <div class="col-8">
                     <label>
                         <input type="number" th:field="*{durataMin}" class="form-control"
-                               required minlength="1" maxlength="10"/>
+                               required maxlength="2" max="59"/>
                     </label>
                 </div>
             </div>

@@ -28,7 +28,7 @@
 
     <form th:action="@{/process_delete}"
           style="max-width: 600px; margin: 0 auto">
-        <input type="number" th:name="id"/>
+        <input type="number" th:name="id" maxlength="10" required/>
         <div>
             <button type="submit" class="btn btn-primary">Delete</button>
         </div>
