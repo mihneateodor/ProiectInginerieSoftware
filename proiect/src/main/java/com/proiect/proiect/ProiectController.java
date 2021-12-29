@@ -250,6 +250,19 @@ public class ProiectController {
         return "operation_success";
     }
 
+    @GetMapping("/list_airports")
+    public String viewAirportsList(Model model) {
+        List<Aeroport> aeroportList = (List<Aeroport>) aeroportRepository.findAll();
+        model.addAttribute("listAirports", aeroportList);
+        return "airports";
+    }
+
+    @GetMapping("/list_flights")
+    public String viewFlightsList(Model model) {
+        List<Zbor> zborList = (List<Zbor>) zborRepository.findAll();
+        model.addAttribute("listFlights", zborList);
+        return "flights";
+    }
 
     @GetMapping("/search")
     public String search() {
