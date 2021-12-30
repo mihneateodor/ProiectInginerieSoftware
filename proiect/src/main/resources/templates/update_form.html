@@ -2,94 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <html lang="en">
 
-<style>
-    body {
-        background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(171, 102, 255, 1) 0%, rgba(116, 182, 247, 1) 90%);
-    }
-
-    h1 {
-        text-align: center;
-    }
-
-    p {
-        text-align: center;
-    }
-
-    div {
-        text-align: center;
-    }
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Manage database</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<div class="container-text-center">
-    <div class="Title">
-        <h1>Update airport information</h1>
-    </div>
 
-    <form th:action="@{/process_update}"
-          style="max-width: 600px; margin: 0 auto">
+<div class="center2">
+    <h1>Update airport information</h1>
+    <form name="f" th:action="@{/process_update}">
 
-        <div class="m-3">
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Insert the airport id</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:name="id" class="form-control"
-                               required maxlength="10"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">New Name</label>
-                <div class="col-8">
-                    <label>
-                        <input type="text" th:name="nume" class="form-control"
-                                maxlength="15"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">New City</label>
-                <div class="col-8">
-                    <label>
-                        <input type="text" th:name="oras" class="form-control"
-                               maxlength="15"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">New Country</label>
-                <div class="col-8">
-                    <label>
-                        <input type="text" th:name="tara" class="form-control"
-                               maxlength="15"/>
-                    </label>
-                </div>
-            </div>
-
-            <div>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
+        <div class="text-field">
+            <input type="number" th:name="id" class="form-control"
+                   required maxlength="10"/>
+            <span></span>
+            <label> Insert the airport ID</label>
 
         </div>
-
+        <div class="text-field">
+            <input type="text" th:name="nume" class="form-control"
+                   maxlength="15"/>
+            <span></span>
+            <label> New Name</label>
+        </div>
+        <div class="text-field">
+            <input type="text" th:name="oras" class="form-control"
+                   maxlength="15"/>
+            <span></span>
+            <label> New City</label>
+        </div>
+        <div class="text-field">
+            <input type="text" th:name="tara" class="form-control"
+                   maxlength="15"/>
+            <span></span>
+            <label> New Country</label>
+        </div>
+        <div class="from-actions">
+            <button type="submit" class="btn">Update</button>
+        </div>
         <div>
-            <h6>Please complete only the fields that you want to modify.</h6>
+            <h5>Please complete only the fields that you want to modify.</h5>
         </div>
 
     </form>
-
 </div>
 
 </body>

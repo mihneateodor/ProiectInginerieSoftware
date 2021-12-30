@@ -2,38 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <html lang="en">
 
-<style>
-    body{
-        background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(171,102,255,1) 0%, rgba(116,182,247,1) 90% );
-    }
-
-    h1 {text-align: center;}
-    p {text-align: center;}
-    div {text-align: center;}
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Manage database</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-<div class="container-text-center">
-    <div class="Titlu">
-        <h1>Delete a flight</h1>
-    </div>
+<div class="center3">
+    <h1>Remove a flight</h1>
+    <form name="f" th:action="@{/process_flight_delete}">
 
-    <form th:action="@{/process_flight_delete}"
-          style="max-width: 600px; margin: 0 auto">
-        <input type="number" th:name="id" maxlength="10" required/>
-        <div>
-            <button type="submit" class="btn btn-primary">Delete</button>
+        <div class="text-field">
+            <input type="number" th:name="id" maxlength="10" required/>
+            <span></span>
+            <label> Insert the flight ID</label>
         </div>
-    </form>
 
+        <div class="from-actions">
+            <button type="submit" class="btn">Delete</button>
+        </div>
+
+    </form>
 </div>
 
 </body>

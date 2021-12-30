@@ -2,120 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <html lang="en">
 
-<style>
-    body {
-        background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(171,102,255,1) 0%, rgba(116,182,247,1) 90% );
-    }
-    h1 {text-align: center;}
-    p {text-align: center;}
-    div {text-align: center;}
-
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Manage database</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<div class="center">
-    <div class="Title">
-        <h1>Add a new flight</h1>
-    </div>
 
-    <form
-            th:action="@{/process_flight_insert}"
-            style="max-width: 600px; margin: 0 auto"
-            th:object="${zbor}" method="post"
-    >
+<div class="center1">
+    <h1>Add a new flight</h1>
+    <form name="f" th:action="@{/process_flight_insert}"
+          th:object="${zbor}" method="post">
 
-        <div class="m-3">
+        <div class="text-field">
+            <input type="number" th:field="*{idAeroportPlecare}" class="form-control"
+                   required maxlength="5"/>
+            <span></span>
+            <label> Departure Airport ID</label>
 
-            <div class="form-group-row">
-                <label class="col-form-label col-4">From</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:field="*{idAeroportPlecare}" class="form-control"
-                               required maxlength="5"/>
-                    </label>
-                </div>
-            </div>
+        </div>
+        <div class="text-field">
+            <input type="number" th:field="*{idAeroportSosire}" class="form-control"
+                   required maxlength="5"/>
+            <span></span>
+            <label> Arrival Airport ID</label>
+        </div>
+        <div class="text-field">
+            <input type="text" th:field="*{oraPlecare}" class="form-control"
+                   required minlength="1" maxlength="10"
+                   pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"/>
+            <span></span>
+            <label> Departure Time</label>
+        </div>
+        <div class="text-field">
+            <input type="number" th:field="*{durataOre}" class="form-control"
+                   required maxlength="2"/>
+            <span></span>
+            <label> Hours</label>
+        </div>
+        <div class="text-field">
+            <input type="number" th:field="*{durataMin}" class="form-control"
+                   required maxlength="2" max="59"/>
+            <span></span>
+            <label> Minutes</label>
+        </div>
+        <div class="text-field">
+            <input type="number" th:field="*{pret}" class="form-control"
+                   required minlength="1" maxlength="10"/>
+            <span></span>
+            <label> Price</label>
+        </div>
+        <div class="text-field">
+            <input type="text" th:field="*{companie}" class="form-control"
+                   required minlength="1" maxlength="20"/>
+            <span></span>
+            <label> Company</label>
+        </div>
 
-            <div class="form-group-row">
-                <label class="col-form-label col-4">To</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:field="*{idAeroportSosire}" class="form-control"
-                               required maxlength="5"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Departure time</label>
-                <div class="col-8">
-                    <label>
-                        <input type="text" th:field="*{oraPlecare}" class="form-control"
-                               required minlength="1" maxlength="10"
-                               pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Hours</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:field="*{durataOre}" class="form-control"
-                               required maxlength="2"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Minutes</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:field="*{durataMin}" class="form-control"
-                               required maxlength="2" max="59"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Price</label>
-                <div class="col-8">
-                    <label>
-                        <input type="number" th:field="*{pret}" class="form-control"
-                               required minlength="1" maxlength="10"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group-row">
-                <label class="col-form-label col-4">Company</label>
-                <div class="col-8">
-                    <label>
-                        <input type="text" th:field="*{companie}" class="form-control"
-                               required minlength="1" maxlength="20"/>
-                    </label>
-                </div>
-            </div>
-
-            <div>
-                <button type="submit" class="btn btn-primary">Add</button>
-            </div>
-
+        <div class="from-actions">
+            <button type="submit" class="btn">Add</button>
         </div>
 
         <div>
-            <h6>Please use the following format for the departure time: 12:00:00</h6>
+            <h5>Please use the following format for the departure time: 12:00:00</h5>
         </div>
 
     </form>
-
 </div>
 
 </body>
