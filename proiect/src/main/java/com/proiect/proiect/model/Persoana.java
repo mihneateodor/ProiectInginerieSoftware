@@ -20,6 +20,14 @@ public class Persoana {
 
     public Persoana(){}
 
+    public Persoana(int idPersoana, String numePersoana, String emailPersoana, String parolaPersoana, boolean admin) {
+        this.idPersoana = idPersoana;
+        this.numePersoana = numePersoana;
+        this.emailPersoana = emailPersoana;
+        this.parolaPersoana = parolaPersoana;
+        this.admin = admin;
+    }
+
     public int getIdPersoana(){
         return this.idPersoana;
     }

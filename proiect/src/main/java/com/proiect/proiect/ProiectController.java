@@ -1,18 +1,23 @@
 package com.proiect.proiect;
 
 
+import com.itextpdf.text.DocumentException;
 import com.proiect.proiect.administrate.*;
-import com.proiect.proiect.model.Aeroport;
-import com.proiect.proiect.model.Persoana;
-import com.proiect.proiect.model.Zbor;
+import com.proiect.proiect.model.*;
 import com.proiect.proiect.repositories.AeroportRepository;
 import com.proiect.proiect.repositories.PersoanaRepository;
 import com.proiect.proiect.repositories.ZborRepository;
+import com.proiect.proiect.ticket.ComputeTicket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.sql.Date;
 import java.sql.Time;
 import com.proiect.proiect.repositories.PersoanaRepository;
 import java.util.List;
@@ -41,6 +46,7 @@ public class ProiectController {
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Aeroport> getAllAirports() {
+        // This returns a JSON or XML with the users
         return aeroportRepository.findAll();
     }
 
@@ -81,6 +87,7 @@ public class ProiectController {
     public String logInPage() {
         return "login";
     }
+
     ///////////////////////////////////////principal admin
     @GetMapping("/main_adm")
     public String MainAdm() {
@@ -253,8 +260,16 @@ public class ProiectController {
         return "flights";
     }
 
+    @GetMapping("/make_ticket")
+    public String Ticket() throws DocumentException, IOException, URISyntaxException {
+        Zbor zbor = new Zbor(3, 3, 4, Time.valueOf("15:00:00"), 30, 2, 100, "Frontier Airlines");
+        Persoana persoana = new Persoana(5, "Popovici Ana", "anap@gmail.com", "parola", false);
+        ComputeTicket.computeBill(new Bilet(zbor, 1, persoana, "30/12/2021", "Zalau", "Bucuresti"));
+        return "main_adm";
+    }
+
     @GetMapping("/search")
-    public String search(){
+    public String search() {
         return "search";
     }
 

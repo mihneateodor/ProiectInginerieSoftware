@@ -6,26 +6,39 @@ public class Bilet {
     private ZborItem zborItem;
     private int nrPasageri;
     private Persoana persoana;
-    private Date dataDus;
-    private Date dataIntors;
+    private String data;
+    private String from;
+    private String to;
 
-    public Bilet(ZborItem zborItem, int nrPasageri, Persoana persoana, Date dataDus, Date dataIntors){
+    public Bilet(ZborItem zborItem, int nrPasageri, Persoana persoana, String data, String from, String to){
         this.nrPasageri=nrPasageri;
         this.zborItem=zborItem;
         this.persoana=persoana;
-        this.dataDus = dataDus;
-        this.dataIntors= dataIntors;
+        this.data = data;
+        this.from = from;
+        this.to = to;
     }
     public Bilet(){}
 
     public int getNrPasageri(){return this.nrPasageri;}
     public Persoana getPersoana() {return this.persoana;}
     public ZborItem getZborItem() {return this.zborItem;}
-    public Date getDataDus() { return this.dataDus;}
-    public Date getDataIntors() { return this.dataIntors;}
+    public String getData() { return this.data;}
     public void setZborItem(ZborItem zborItem) {this.zborItem=zborItem;}
     public void setNrPasageri(int nrPasageri) {this.nrPasageri=nrPasageri;}
     public void setPersoana(Persoana persoana) { this.persoana=persoana;}
-    public void setDataDus(Date dataDus) { this.dataDus=dataDus;}
-    public void setDataIntors(Date dataIntors) {this.dataIntors=dataIntors;}
+    public void setData(String data) { this.data=data;}
+
+    public String getFrom() {
+        return from;
+    }
+    public void setFrom(String from) {
+        this.from = from;
+    }
+    public String getTo() {
+        return to;
+    }
+    public void setTo(String to) {
+        this.to = to;
+    }
 }

@@ -161,11 +161,10 @@ public class CautareZborCreareBilet {
         return null;
     }
 
-    public Bilet createTicket(ZborItem zbor, int nrPasageri, Date dataDus, Date dataIntors, Persoana persoana){
+    public Bilet createTicket(ZborItem zbor, int nrPasageri, String data, Persoana persoana, String from, String to){
         if( nrPasageri > 1)
             zbor.setPret( zbor.getPret() * nrPasageri);
-        Bilet bilet = new Bilet(zbor, nrPasageri, persoana, dataDus, dataIntors);
-        return bilet;
+        return new Bilet(zbor, nrPasageri, persoana, data, from, to);
     }
 
 }
