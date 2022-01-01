@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Choose</title>
+    <title>Error</title>
     <link rel="stylesheet" href="choose.css">
 </head>
 <body>
@@ -14,16 +14,16 @@
 
 <div class="choose">
     <h1>Ticket</h1>
-        <label th:text="${mesaj}"  ></label>
+    <label th:text="${mesaj}"  ></label>
 </div>
 
 <div class="but">
     <form name="name" th:action="@{/search}" method="get">
         <button type="submit" class="btn1" name="back">Go Back</button>
     </form>
-    <form name="name2" th:action="@{/}" method="get">
+    <!--<form name="name2" th:action="@{/}" method="get">
         <button type="submit" class="btn2" name="buy">Buy</button>
-    </form>
+    </form>-->
 </div>
 
 </body>
@@ -38,6 +38,6 @@
     <label th:text="${mesaj}"  ></label>
 </div>
 
-<label th:text="${mesaj}"  ></label>
+
 
 -->

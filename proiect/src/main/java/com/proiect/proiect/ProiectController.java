@@ -285,9 +285,15 @@ public class ProiectController {
             mesaj="Could not find this route!";
         }
         model.addAttribute("mesaj",mesaj);
-        if(!(mesaj.equals("Could not find this route!")))
-            return "choose";
+        if(mesaj.equals("Could not find this route!")) {
+            return "choosenot";
+        }
         return "choose";
+    }
+
+    @GetMapping("/choosenot")
+    public String chooseNot(){
+        return "choosenot";
     }
 
 
