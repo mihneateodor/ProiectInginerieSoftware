@@ -37,6 +37,7 @@ public class ProiectController {
 
     private CautareZborCreareBilet search;
 
+
     private Invoker invoker = new Invoker();
     private Operation operation = new Operation();
     private InsertCommand insertCommand = new InsertCommand(operation);
@@ -261,11 +262,11 @@ public class ProiectController {
     }
 
     @GetMapping("/make_ticket")
-    public String Ticket() throws DocumentException, IOException, URISyntaxException {
+    public String Ticket(ZborItem zborItem) throws DocumentException, IOException, URISyntaxException {
         Zbor zbor = new Zbor(3, 3, 4, Time.valueOf("15:00:00"), 30, 2, 100, "Frontier Airlines");
-        Persoana persoana = new Persoana(5, "Popovici Ana", "anap@gmail.com", "parola", false);
+        Persoana persoana = new Persoana(5, "acmki", "anap@gmail.com", "parola", false);
         ComputeTicket.computeBill(new Bilet(zbor, 1, persoana, "30/12/2021", "Zalau", "Bucuresti"));
-        return "main_adm";
+        return "index";
     }
 
     @GetMapping("/search")
@@ -273,25 +274,35 @@ public class ProiectController {
         return "search";
     }
 
-    @RequestMapping(value="/choose", method = RequestMethod.POST)
-    @PostMapping("/choose")
-    public String choose(@RequestParam String from, @RequestParam String to, Model model) {
+    @RequestMapping(value="/choose", method = RequestMethod.GET)
+    @GetMapping("/choose")
+    public String choose(ZborItem zborItem) throws DocumentException, IOException, URISyntaxException {
+        Ticket(zborItem);
+        System.out.println(zborItem.toString());
+        return "choose";
+    }
+
+    @GetMapping("choose2")
+    public String choose2(@RequestParam String from, @RequestParam String to, Model model) throws DocumentException, IOException, URISyntaxException {
         String mesaj;
+        ZborItem zborItem= new ZborComposite();
         CautareZborCreareBilet search = new CautareZborCreareBilet(aeroportRepository);
         try {
             mesaj=search.findZborAStar(from, to).toString();
+            zborItem = search.findZborAStar(from,to);
 
         } catch (Exception e) {
             mesaj="Could not find this route!";
         }
         model.addAttribute("mesaj",mesaj);
+        model.addAttribute("zbor",zborItem);
         if(mesaj.equals("Could not find this route!")) {
             return "choosenot";
         }
-        return "choose";
+        return choose(zborItem);
     }
 
-    @GetMapping("/choosenot")
+    @PostMapping("/choosenot")
     public String chooseNot(){
         return "choosenot";
     }
