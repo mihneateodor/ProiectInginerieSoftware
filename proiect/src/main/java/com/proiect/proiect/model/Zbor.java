@@ -91,8 +91,8 @@ public class Zbor extends ZborItem implements Comparable<Zbor>{
         Aeroport aeroport1 = CautareZborCreareBilet.findAeroportById(this.idAeroportPlecare);
         Aeroport aeroport2 = CautareZborCreareBilet.findAeroportById(this.idAeroportSosire);
         String zbor;
-        zbor = "De la aeroportul " + aeroport1.toString() + " catre aeroportul " + aeroport2.toString() + " la ora " + this.oraPlecare + ", durata de " +
-                this.durataOre + " ore si " + this.durataMin + " minute, cu compania " + this.companie + " la pretul de " + this.pret + " EURO.";
+        zbor = "Departure from " + aeroport1.toString() + " , arrival at " + aeroport2.toString() + ", leaving at " + this.oraPlecare + " and it takes  " +
+                this.durataOre + " hours and " + this.durataMin + " minutes, with " + this.companie + " airline, at the price of " + this.pret + " EURO.";
         return zbor;
     }
 

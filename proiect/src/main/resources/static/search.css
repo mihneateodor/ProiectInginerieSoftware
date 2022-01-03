@@ -40,7 +40,7 @@ form .text-field{
 
 
 .text-field input{
-    width: 350px;
+    width: 200px;
     padding: 0 5px;
     height: 40px;
     font-size: 16px;
@@ -134,4 +134,11 @@ form .text-field{
     transform: translate(-50%,-50%);
     border: 5px solid black;
 
+}
+
+.date{
+    position: absolute;
+    display : inline-block;
+    top : 68%;
+    left: 60%;
 }

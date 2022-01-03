@@ -101,14 +101,15 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
     public String toString(){
         String nrEscale;
         if(lista.size()-1 == 0)
-            nrEscale="nu contine nicio escala";
+            nrEscale="does not have any layovers ";
         else if(lista.size()-1 == 1)
-            nrEscale="contine o escala";
+            nrEscale="does have one layover ";
         else
-            nrEscale="contine " + (lista.size()-1) + " escale";
-        String mesaj = "Traseul "+ nrEscale +", dureaza "+ this.durataOre +
-                " ore si " + this.durataMin + " minute. Cu plecare la ora  " + this.oraPlecare + ", la pretul de " + this.pret + " EURO " +
-                "si este format din urmatoarele zboruri.\n " ;
+            nrEscale="does have " + (lista.size()-1) + " layovers";
+        String mesaj = "The route "+ nrEscale +", it takes "+ this.durataOre +
+                " hours and " + this.durataMin + " minutes. Departure at " + this.oraPlecare + ", at the price of " + this.pret + " EURO " +
+                //"si este format din urmatoarele zboruri.\n " ;
+                "and contains the next flights.\n";
         for(ZborItem item : lista){
             mesaj = mesaj + item.toString() + "\n";
         }

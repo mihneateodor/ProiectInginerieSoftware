@@ -44,19 +44,6 @@ public class ProiectController {
     private UpdateCommand updateCommand = new UpdateCommand(operation);
     private DeleteCommand deleteCommand = new DeleteCommand(operation);
 
-    @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<Aeroport> getAllAirports() {
-        // This returns a JSON or XML with the users
-        return aeroportRepository.findAll();
-    }
-
-    @GetMapping(path = "/zboruri")
-    public @ResponseBody
-    Iterable<Zbor> getAllZbor() {
-        return zborRepository.findAll();
-    }
-
     @GetMapping("")
     public String viewHomePage() {
         return "index";
@@ -261,8 +248,13 @@ public class ProiectController {
         return "flights";
     }
 
+    @RequestMapping(value="/make_ticket", method = RequestMethod.GET)
     @GetMapping("/make_ticket")
-    public String Ticket(ZborItem zborItem) throws DocumentException, IOException, URISyntaxException {
+    public String Ticket(ZborItem zborItem, Date date1) throws DocumentException, IOException, URISyntaxException {
+        if(date1==null)
+            System.out.println("nimic");
+        else
+            System.out.println(date1.toString());
         Zbor zbor = new Zbor(3, 3, 4, Time.valueOf("15:00:00"), 30, 2, 100, "Frontier Airlines");
         Persoana persoana = new Persoana(5, "acmki", "anap@gmail.com", "parola", false);
         ComputeTicket.computeBill(new Bilet(zbor, 1, persoana, "30/12/2021", "Zalau", "Bucuresti"));
@@ -276,16 +268,20 @@ public class ProiectController {
 
     @RequestMapping(value="/choose", method = RequestMethod.GET)
     @GetMapping("/choose")
-    public String choose(ZborItem zborItem) throws DocumentException, IOException, URISyntaxException {
-        Ticket(zborItem);
-        System.out.println(zborItem.toString());
+    public String choose(ZborItem zborItem, Date date) throws DocumentException, IOException, URISyntaxException {
+
+        Date date1 = date;
+        Ticket(zborItem, date1);
+        //System.out.println(zborItem.toString());
+        //System.out.println(date.toString());
         return "choose";
     }
 
     @GetMapping("choose2")
-    public String choose2(@RequestParam String from, @RequestParam String to, Model model) throws DocumentException, IOException, URISyntaxException {
+    public String choose2(@RequestParam String from, @RequestParam String to, @RequestParam Date date,  Model model) throws DocumentException, IOException, URISyntaxException {
         String mesaj;
         ZborItem zborItem= new ZborComposite();
+
         CautareZborCreareBilet search = new CautareZborCreareBilet(aeroportRepository);
         try {
             mesaj=search.findZborAStar(from, to).toString();
@@ -294,12 +290,17 @@ public class ProiectController {
         } catch (Exception e) {
             mesaj="Could not find this route!";
         }
-        model.addAttribute("mesaj",mesaj);
-        model.addAttribute("zbor",zborItem);
+        model.addAttribute("mesaj", mesaj);
         if(mesaj.equals("Could not find this route!")) {
+            mesaj="Could not find this route!";
             return "choosenot";
         }
-        return choose(zborItem);
+        else {
+            mesaj = "Date of the flight is on " + date.toString() + ". " + mesaj;
+            model.addAttribute("mesaj", mesaj);
+            model.addAttribute("zbor", zborItem);
+            return choose(zborItem, date);
+        }
     }
 
     @PostMapping("/choosenot")
