@@ -24,6 +24,19 @@
             <label for="to"> To</label>
         </div>
 
+        <div class="date">
+            <script>
+                n = new Date();
+                y = n.getFullYear();
+                m = n.getMonth() + 1;
+                d = n.getDate();
+                document.getElementById("today").innerHTML = m + "/" + d + "/" + y;
+            </script>
+
+            <label>Choose date:</label>
+            <input type="date" name="date" min="today" required/>
+        </div>
+
         <div class="from-actions">
             <button type="submit" class="btn" name="search">Search</button>
         </div>

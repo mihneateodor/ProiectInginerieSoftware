@@ -14,7 +14,7 @@
 
 <div class="choose">
     <h1>Ticket</h1>
-        <label th:text="${mesaj}"  ></label>
+    <label th:text="${mesaj}"></label>
 </div>
 
 <div class="but">
@@ -22,22 +22,12 @@
         <button type="submit" class="btn1" name="back">Go Back</button>
     </form>
     <form name="zbor" th:action="@{/make_ticket}" method="get">
+
         <button type="submit" class="btn2" name="index">Buy</button>
     </form>
 </div>
 
-</body>
-</html>
-
-
-<!--<div><textarea th:class="form-control" th:rows="12" th:cols="100"
-               name="traseu" th:inline="text">[[${mesaj}]]
-</textarea></div>
-
-<div class="label">
-    <label th:text="${mesaj}"  ></label>
 </div>
 
-<label th:text="${mesaj}"  ></label>
-
--->
+</body>
+</html>

@@ -57,7 +57,7 @@ public class Aeroport implements Comparable<Aeroport>{
     }
     public String toString(){
         String aeroport;
-        aeroport =  "\"" + this.numeAeroport + "\""  + " din " + this.orasAeroport + ", " + this.taraAeroport;
+        aeroport =  "\"" + this.numeAeroport + "\""  + " from " + this.orasAeroport + ", " + this.taraAeroport;
         return aeroport;
     }
 
