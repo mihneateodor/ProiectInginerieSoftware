@@ -4,41 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="index.css">
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="indexNewStyle.css">
+
 </head>
 <body>
-    <div class="title">
-        <h1>Flights Ticket Project</h1>
-    </div>
+<header>
+    <h1 class="logo">Flights Ticket Project</h1>
+    <nav>
+        <ul class="nav_links">
+            <li><a href="/admin/list_users">Users</a></li>
+            <li><a href="/login">Log In</a></li>
+            <li><form th:action="@{/logout}" method="post">
+                <input class="logoutBtn" type="submit" value="Sign Out" />
+            </form></li>
+        </ul>
+    </nav>
+    <a class="cta" href="#"><button>Contact</button></a>
+</header>
 
-    <div class="main">
-        <form name="btn1" th:action="@{/login}" method="get">
-            <button type="submit" class="btn1" name="login">Log In as User</button>
-        </form>
-
-        <form name="btn2" th:action="@{/main_adm}" method="get">
-            <button type="submit" class="btn2" name="login2">Log In as Administrator</button>
-        </form>
-    </div>
-
-
-
-    <div class="about">
-        <label >Contact us:<br/> Mihnea Teodor Circiu - circiumihnea@gmail.com
-                <br/>Mihai Cociubei
-                <br/>Raul Gorgan</label>
-    </div>
-
+</div>
+    <a href="/admin">
+        <button style="left: 50%; top: 50%">Admin</button>
+    </a>
+    <a href="/user">
+        <button class="btn2">User</button>
+    </a>
+</div>
 
 </body>
 </html>
-<!-- <div>
-            <h3><a th:href="@{/list_users}">List of Users</a></h3>
-            <h3><a th:href="@{/register}">Register</a></h3>
-            <h3><a th:href="@{/login}">Login</a></h3>
-            <h3><a th:href="@{/main_adm}">Administrate</a></h3>
-            <a th:href="@{/make_ticket}" class="button button1">Ticket</a>
-        </div>-->

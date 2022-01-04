@@ -3,25 +3,22 @@ package com.proiect.proiect;
 
 import com.itextpdf.text.DocumentException;
 import com.proiect.proiect.administrate.*;
+import com.proiect.proiect.defaultPersoana.PersoanaService;
 import com.proiect.proiect.model.*;
 import com.proiect.proiect.repositories.AeroportRepository;
 import com.proiect.proiect.repositories.PersoanaRepository;
 import com.proiect.proiect.repositories.ZborRepository;
 import com.proiect.proiect.ticket.ComputeTicket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.sql.Date;
 import java.sql.Time;
-import com.proiect.proiect.repositories.PersoanaRepository;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -35,6 +32,9 @@ public class ProiectController {
     @Autowired
     private PersoanaRepository persoanaRepository;
 
+    @Autowired
+    private PersoanaService persoanaService;
+
     private CautareZborCreareBilet search;
 
 
@@ -45,7 +45,9 @@ public class ProiectController {
     private DeleteCommand deleteCommand = new DeleteCommand(operation);
 
     @GetMapping("")
-    public String viewHomePage() {
+    public String viewHomePage( Model model) {
+        List<Zbor> zborList = (List<Zbor>) zborRepository.findAll();
+        model.addAttribute("listFlights", zborList);
         return "index";
     }
 
@@ -57,17 +59,21 @@ public class ProiectController {
 
     @PostMapping("/process_register")
     public String processRegistration(Persoana persoana) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        /*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodenPassword = encoder.encode(persoana.getParolaPersoana());
         persoana.setParolaPersoana(encodenPassword);
-        persoanaRepository.save(persoana);
+        persoanaRepository.save(persoana);*/
+
+        persoanaService.registerDefaultUser(persoana);
+
         return "registration_success";
     }
 
-    @GetMapping("/list_users")
+    @GetMapping("/admin/list_users")
     public String viewUserList(Model model) {
-        List<Persoana> persoanaList = (List<Persoana>) persoanaRepository.findAll();
-        model.addAttribute("listUsers", persoanaList);
+        List<Persoana> listUsers = persoanaService.listAll();
+        model.addAttribute("listUsers", listUsers);
+
         return "users";
     }
 
@@ -256,7 +262,7 @@ public class ProiectController {
         else
             System.out.println(date1.toString());
         Zbor zbor = new Zbor(3, 3, 4, Time.valueOf("15:00:00"), 30, 2, 100, "Frontier Airlines");
-        Persoana persoana = new Persoana(5, "acmki", "anap@gmail.com", "parola", false);
+        Persoana persoana = new Persoana(5, "acmki", "anap@gmail.com", "parola");
         ComputeTicket.computeBill(new Bilet(zbor, 1, persoana, "30/12/2021", "Zalau", "Bucuresti"));
         return "index";
     }
@@ -308,5 +314,26 @@ public class ProiectController {
         return "choosenot";
     }
 
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<Persoana> listUsers = persoanaService.listAll();
+        model.addAttribute("listUsers", listUsers);
 
+        return "users";
+    }
+
+    @GetMapping("/users/edit/{id}")
+    public String editUser(@PathVariable("id") Integer id, Model model) {
+        Persoana persoana = persoanaService.getPersoana(id);
+        List<Rol> listRoles = persoanaService.listRoles();
+        model.addAttribute("persoana", persoana);
+        model.addAttribute("listRoles", listRoles);
+        return "user_form";
+    }
+
+    @PostMapping("/user/save")
+    public String savePersoana(Persoana persoana){
+        persoanaService.save(persoana);
+        return "redirect:/list_users";
+    }
 }
