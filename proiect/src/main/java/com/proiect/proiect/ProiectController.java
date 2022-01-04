@@ -322,7 +322,7 @@ public class ProiectController {
         return "users";
     }
 
-    @GetMapping("/users/edit/{id}")
+    @GetMapping("/usersEdit/{id}")
     public String editUser(@PathVariable("id") Integer id, Model model) {
         Persoana persoana = persoanaService.getPersoana(id);
         List<Rol> listRoles = persoanaService.listRoles();
