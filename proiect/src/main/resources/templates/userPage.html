@@ -3,26 +3,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Admin</title>
+
 
     <link rel="stylesheet" href="indexNewStyle.css">
 
 </head>
 <body>
 <header>
-    <h1 class="logo">Flights Ticket Project</h1>
+    <h1 class="logo">Flights Ticket Project User</h1>
     <nav>
         <ul class="nav_links">
-            <li><a href="/search">User</a></li>
-            <li><a href="/adminPage">Admin</a></li>
-            <li><a href="/login">Log In</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="#">Op2</a></li>
+            <li><a href="#">Op3</a></li>
+            <li><a href="#">Op4</a></li>
             <li><form th:action="@{/logout}" method="post">
                 <input class="logoutBtn" type="submit" value="Sign Out" />
             </form></li>
         </ul>
     </nav>
-    <a class="cta" href="/contact"><button>Contact</button></a>
+    <a class="cta" href="/"><button>Home</button></a>
 </header>
+
 
 </body>
 </html>

@@ -48,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAuthority("Admin")
-                .antMatchers("/user/**").hasAuthority("User")
+                .antMatchers("/admin/**","/adminPage","/airport_adm","/zbor_adm").hasAuthority("Admin")
+                .antMatchers("/user/**","/userPage","/search").hasAuthority("User")
                 .antMatchers("/**", "/logout").permitAll()
                 .and()
                 .formLogin()
@@ -57,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(successHandler)
                 .permitAll()
                 .and().logout().permitAll();
-
     }
 
     @Autowired

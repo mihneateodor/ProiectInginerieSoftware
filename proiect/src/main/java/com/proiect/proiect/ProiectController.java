@@ -336,4 +336,19 @@ public class ProiectController {
         persoanaService.save(persoana);
         return "redirect:/list_users";
     }
+
+    @GetMapping("/adminPage")
+    public String viewAdminPage() {
+        return "adminPg";
+    }
+
+    @GetMapping("/userPage")
+    public String viewUserPage() {
+        return "userPage";
+    }
+
+    @GetMapping("/contact")
+    public String contactPage() {
+        return "contact";
+    }
 }
