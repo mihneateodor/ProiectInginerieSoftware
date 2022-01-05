@@ -51,6 +51,9 @@ public class ZborItem  {
     public Time getOraPlecare(){
         throw  new UnsupportedOperationException();
     }
+    public Time getOraPlecareComp(){
+        throw new UnsupportedOperationException();
+    }
     public String toString(){
         throw new UnsupportedOperationException();
     }

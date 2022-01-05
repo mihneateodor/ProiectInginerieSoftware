@@ -36,8 +36,11 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
     }
 
     public int getIdAeroportSosire(){
-        ZborItem zborItem = getLastZborItem();
-        return zborItem.getIdAeroportSosire();
+        int index=this.lista.size()-1;
+        return this.lista.get(index).getIdAeroportSosire();
+    }
+    public int getIdAeroportPlecare(){
+        return this.lista.get(0).getIdAeroportPlecare();
     }
 
     public ZborItem getZborItem (int index){
@@ -48,6 +51,9 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
     }
     public void removeLastZborItem () {
         this.lista.remove(lista.get(lista.size()-1));
+    }
+    public int getIdZbor(){
+        return this.lista.get(0).getIdZbor();
     }
 
     public void setDurataMin(){
@@ -82,6 +88,10 @@ public class ZborComposite extends ZborItem implements Comparable<ZborComposite>
     }
 
     public Time getOraPlecare(){
+        return this.oraPlecare;
+    }
+
+    public Time getOraPlecareComp(){
         return this.oraPlecare;
     }
 

@@ -3,12 +3,21 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #24252A;
+
 
 }
 
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial,sans-serif;
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
+    height: 100vh;
+    overflow: hidden;
+}
+
 .about label{
-    color: #edf0f1;
+    color: black;
 }
 
 .about{

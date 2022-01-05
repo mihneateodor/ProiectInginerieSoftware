@@ -1,6 +1,5 @@
 package com.proiect.proiect.model;
 
-import java.sql.Date;
 
 public class Bilet {
     private ZborItem zborItem;

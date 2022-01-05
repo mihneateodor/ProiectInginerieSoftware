@@ -73,7 +73,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testAddRolesToExistingUser(){
-        Persoana persoana = repo.findById(2).get();
+        Persoana persoana = repo.findById(1).get();
 
         Rol rolUser = rolRepository.findByName("User");
         persoana.addRole(rolUser);

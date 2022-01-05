@@ -76,10 +76,10 @@ public class ComputeTicket {
         ColumnText c = new ColumnText(canvas1);
         Phrase text = new Phrase("Name: " + bilet.getPersoana().getNumePersoana() + "\n\n" +
                 "Flight" + "  " + "Persons" + "     " + "Date" + "        " + "Time\n" +
-                "  " + bilet.getZborItem().getIdZbor() +
+                "  " + //bilet.getZborItem().getIdZbor() +
                 "       " + bilet.getNrPasageri() +
                 "     " + bilet.getData() +
-                "    " + bilet.getZborItem().getOraPlecare()
+                "    " + bilet.getZborItem().getOraPlecareComp()
                 , font1);
         c.setSimpleColumn(text, 550, 700, 200, 50, 20, Element.ALIGN_LEFT);
         c.go();
@@ -100,9 +100,9 @@ public class ComputeTicket {
         canvas2.fill();
 
         ColumnText c1 = new ColumnText(canvas2);
-        Phrase myText1 = new Phrase("" + bilet.getZborItem().getCompanie(), font);
-        c1.setSimpleColumn(myText1, 180, 575, 80, 30, 20, Element.ALIGN_LEFT);
-        c1.go();
+        //Phrase myText1 = new Phrase("" + bilet.getZborItem().getCompanie(), font);
+        //c1.setSimpleColumn(myText1, 180, 575, 80, 30, 20, Element.ALIGN_LEFT);
+        //c1.go();
 
         canvas2.closePathStroke();
 
