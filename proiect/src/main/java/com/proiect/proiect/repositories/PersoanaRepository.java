@@ -10,4 +10,7 @@ public interface PersoanaRepository extends CrudRepository<Persoana, Integer> {
     @Query("SELECT u FROM Persoana u where u.emailPersoana = ?1")
     Persoana findByEmailPersoana(String email);
 
+    @Query("SELECT u FROM Persoana u where u.idPersoana = ?1")
+    Persoana findByIdPersoana(int id);
+
 }

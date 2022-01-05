@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User - CodeJava</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+<div class="center">
+    <div class="container-text-center">
+        <div class="Titlu">
+            <h1>Edit User</h1>
+        </div>
+
+        <form
+                th:action="@{/user/save}"
+                style="max-width: 600px; margin: 0 auto"
+                th:object="${persoana}" method="post"
+        >
+            <input type="hidden" th:field="*{idPersoana}" />
+
+            <div class="text-field">
+                <input type="text" th:field="*{numePersoana}" class="form-control" required minlength="2" maxlength="20" />
+                <span></span>
+                <label class="col-form-label col-4">Name</label>
+            </div>
+
+            <div class="text-field">
+                <input type="email" th:field="*{emailPersoana}" class="form-control" required />
+                <span></span>
+                <label class="col-form-label col-4">E-mail</label>
+            </div>
+
+            <div class="text-field">
+                <input type="password" th:field="*{parolaPersoana}" class="form-control" required minlength="6" maxlength="10"/>
+                <span></span>
+                <label class="col-form-label col-4">Password</label>
+            </div>
+
+            <div class="text-field">
+                <th:block th:each="role: ${listRoles}">
+                    <input type="checkbox" th:field="*{rol}"
+                           th:text="${role.name}" th:value="${role.idPersoana}" class="m-2" />
+                </th:block>
+                <span></span>
+                <label class="col-form-label col-4">Assigned Roles</label>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

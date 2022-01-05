@@ -48,14 +48,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/users").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/admin/**","/adminPage","/airport_adm","/zbor_adm","/usersEdit/**").hasAuthority("Admin")
+                .antMatchers("/user/**","/userPage","/search").hasAuthority("User")
+                .antMatchers("/**", "/logout").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/users")
+                .loginPage("/login")
+                .successHandler(successHandler)
                 .permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .and().logout().permitAll();
     }
+
+    @Autowired
+    private LoginSuccessHandler successHandler;
 }

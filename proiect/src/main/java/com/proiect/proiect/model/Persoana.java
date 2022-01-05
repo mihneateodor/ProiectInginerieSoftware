@@ -2,6 +2,9 @@ package com.proiect.proiect.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 @Entity
 @Table(name="persoana")
@@ -15,17 +18,23 @@ public class Persoana {
     private String emailPersoana;
     @Column(nullable = false)
     private String parolaPersoana;
-    @Column(nullable = false)
-    private boolean admin;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_rol",
+            joinColumns = @JoinColumn(name = "persoana_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+
+    )
+    private Set<Rol> rol = new HashSet<>();
 
     public Persoana(){}
 
-    public Persoana(int idPersoana, String numePersoana, String emailPersoana, String parolaPersoana, boolean admin) {
+    public Persoana(int idPersoana, String numePersoana, String emailPersoana, String parolaPersoana) {
         this.idPersoana = idPersoana;
         this.numePersoana = numePersoana;
         this.emailPersoana = emailPersoana;
         this.parolaPersoana = parolaPersoana;
-        this.admin = admin;
     }
 
     public int getIdPersoana(){
@@ -39,13 +48,6 @@ public class Persoana {
     }
     public String getParolaPersoana(){
         return this.parolaPersoana;
-    }
-    public boolean getAdmin(){
-        return this.admin;
-    }
-
-    public void setAdmin(boolean admin){
-        this.admin=admin;
     }
     public void setIdPersoana(int idPersoana) {
         this.idPersoana = idPersoana;
@@ -67,5 +69,40 @@ public class Persoana {
         String persoana;
         persoana = "ID " + this.idPersoana + ": " + this.numePersoana + " - " + this.emailPersoana + " - " + this.parolaPersoana;
         return persoana;
+    }
+
+    public void addRole(Rol rol){
+        this.rol.add(rol);
+    }
+
+    public Set<Rol> getRol() {
+        return rol;
+    }
+
+    public void setRol(Set<Rol> rol) {
+        this.rol = rol;
+    }
+
+    public String getRoStringl() {
+        if(rol.isEmpty())
+            return "[]";
+        String rolS = "[";
+        for (Rol s: rol){
+            rolS += s.getName() + ", ";
+        }
+        rolS = rolS.substring(0, rolS.length() - 2);
+        return rolS + "]";
+    }
+
+    public boolean hasRole(String roleName) {
+        Iterator<Rol> iterator = this.rol.iterator();
+        while (iterator.hasNext()) {
+            Rol role = iterator.next();
+            if (role.getName().equals(roleName)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
