@@ -74,21 +74,21 @@ public class ComputeTicket {
         // canvas1.fill();
 
         ColumnText c = new ColumnText(canvas1);
-        Phrase text = new Phrase("Name: " + bilet.getPersoana().getNumePersoana() + "\n\n" +
+        Phrase text = new Phrase(
                 "Flight" + "  " + "Persons" + "     " + "Date" + "        " + "Time\n" +
                 "  " + bilet.getZborItem().getIdZbor() +
                 "       " + bilet.getNrPasageri() +
                 "     " + bilet.getData() +
                 "    " + bilet.getZborItem().getOraPlecareComp()
                 , font1);
-        c.setSimpleColumn(text, 550, 700, 200, 50, 20, Element.ALIGN_LEFT);
+        c.setSimpleColumn(text, 550, 680, 200, 50, 20, Element.ALIGN_LEFT); //700
         c.go();
 
         canvas1.setLineWidth(2);
         canvas1.setColorStroke(BaseColor.RED);
 
-        canvas1.moveTo(200, 600);
-        canvas1.lineTo(540, 600);
+        canvas1.moveTo(200, 616);
+        canvas1.lineTo(540, 616);//600
 
         canvas1.closePathStroke();
 
@@ -118,7 +118,7 @@ public class ComputeTicket {
                 + bilet.getFrom()
                 + "       " + bilet.getTo()
                 , font);
-        c2.setSimpleColumn(myText2, 540, 590, 240, 30, 20, Element.ALIGN_LEFT);
+        c2.setSimpleColumn(myText2, 540, 610, 240, 30, 20, Element.ALIGN_LEFT);//590
         c2.go();
 
 
