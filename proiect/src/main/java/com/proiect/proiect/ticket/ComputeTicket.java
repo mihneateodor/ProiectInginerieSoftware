@@ -76,7 +76,7 @@ public class ComputeTicket {
         ColumnText c = new ColumnText(canvas1);
         Phrase text = new Phrase("Name: " + bilet.getPersoana().getNumePersoana() + "\n\n" +
                 "Flight" + "  " + "Persons" + "     " + "Date" + "        " + "Time\n" +
-                "  " + //bilet.getZborItem().getIdZbor() +
+                "  " + bilet.getZborItem().getIdZbor() +
                 "       " + bilet.getNrPasageri() +
                 "     " + bilet.getData() +
                 "    " + bilet.getZborItem().getOraPlecareComp()

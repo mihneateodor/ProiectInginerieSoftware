@@ -14,7 +14,7 @@ public class ConnectionSql {
 
     private static final String USER = "root";
 
-    private static final String PASS = "parola123456789";
+    private static final String PASS = "root";
 
     private static ConnectionSql singleInstance = new ConnectionSql();
 

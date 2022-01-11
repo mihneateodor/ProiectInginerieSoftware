@@ -2,6 +2,7 @@ package com.proiect.proiect;
 
 
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfDocument;
 import com.proiect.proiect.administrate.*;
 import com.proiect.proiect.defaultPersoana.PersoanaService;
 import com.proiect.proiect.model.*;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.activation.FileDataSource;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Time;
@@ -266,7 +270,7 @@ public class ProiectController {
 
 
     public void ticket2(ZborItem zborItem, String dataString,String from, String to) throws DocumentException, IOException, URISyntaxException {
-        Persoana persoana = new Persoana(5, "test2", "anap@gmail.com", "parola");
+        Persoana persoana = new Persoana(5, "Hai Odata", "anap@gmail.com", "parola");
         ComputeTicket.computeBill(new Bilet(zborItem, 1, persoana, dataString, from, to));
     }
 
@@ -275,9 +279,27 @@ public class ProiectController {
         return "search";
     }
 
+    @GetMapping("/open_ticket")
+    public String ticket() {
+        try {
+            if ((new File("E:\\!! ACCESS DENIED !!\\ProiectInginerieSoftware\\proiect\\ticket.pdf")).exists()) {
+                Process p = Runtime
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler E:\\!! ACCESS DENIED !!\\ProiectInginerieSoftware\\proiect\\ticket.pdf");
+                p.waitFor();
+            } else {
+                System.out.println("File is not exists");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return "search";
+    }
+
     @RequestMapping(value="/choose", method = RequestMethod.GET)
     @GetMapping("/choose")
     public String choose(ZborItem zborItem, String dataString, String from, String to) throws DocumentException, IOException, URISyntaxException {
+
         ticket2(zborItem,dataString,from,to);
         return "choose";
     }
@@ -289,7 +311,8 @@ public class ProiectController {
         CautareZborCreareBilet search = new CautareZborCreareBilet(aeroportRepository);
         try {
             mesaj=search.findZborAStar(from, to).toString();
-            zborItem = search.findZborAStar(from,to);
+
+            zborItem = search.findZborAStar(from, to);
         } catch (Exception e) {
             mesaj="Could not find this route!";
         }
